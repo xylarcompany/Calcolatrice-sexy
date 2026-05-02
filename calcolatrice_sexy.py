@@ -430,7 +430,7 @@ class CalculatorApp:
             [("7", "digit", 1), ("8", "digit", 1), ("9", "digit", 1), ("x", "operator", 1)],
             [("4", "digit", 1), ("5", "digit", 1), ("6", "digit", 1), ("-", "operator", 1)],
             [("1", "digit", 1), ("2", "digit", 1), ("3", "digit", 1), ("+", "operator", 1)],
-            [("+/-", "function", 1), ("0", "digit", 1), (".", "digit", 1), ("=", "equal", 1)],
+            [("+/-", "function", 1), ("0", "digit", 1), (".", "digit", 1), ("=", "equal", 1)], # sono disoccupato btw
         ]
 
         for row_index, row in enumerate(layout):
@@ -524,11 +524,11 @@ class CalculatorApp:
             pady=0,
             takefocus=False,
         )
-        button._images = assets  # type: ignore[attr-defined]
-        button.bind("<Enter>", lambda _event, widget=button: widget.config(image=widget._images["hover"]))  # type: ignore[attr-defined]
-        button.bind("<Leave>", lambda _event, widget=button: widget.config(image=widget._images["normal"]))  # type: ignore[attr-defined]
-        button.bind("<ButtonPress-1>", lambda _event, widget=button: widget.config(image=widget._images["pressed"]))  # type: ignore[attr-defined]
-        button.bind("<ButtonRelease-1>", lambda _event, widget=button: widget.config(image=widget._images["hover"]))  # type: ignore[attr-defined]
+        button._images = assets  
+        button.bind("<Enter>", lambda _event, widget=button: widget.config(image=widget._images["hover"]))  
+        button.bind("<Leave>", lambda _event, widget=button: widget.config(image=widget._images["normal"]))  
+        button.bind("<ButtonPress-1>", lambda _event, widget=button: widget.config(image=widget._images["pressed"])) 
+        button.bind("<ButtonRelease-1>", lambda _event, widget=button: widget.config(image=widget._images["hover"]))  
         return button
 
     def _get_button_assets(self, role: str, width: int, height: int) -> dict[str, ImageTk.PhotoImage]:
@@ -700,7 +700,7 @@ def main() -> int:
     except FileNotFoundError as exc:
         messagebox.showerror(APP_TITLE, str(exc))
         return 1
-    except Exception as exc:  # pragma: no cover - user-facing fallback
+    except Exception as exc:  # vb ciao mi sn scocciato mi fermo QUI
         messagebox.showerror(APP_TITLE, f"Avvio fallito:\n{exc}")
         return 1
     return 0
